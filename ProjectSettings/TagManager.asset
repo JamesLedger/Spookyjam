@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Book
   - cubee
+  - popUp
+  - popDown
+  - ResetChunk
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - Projectile
   - Button
   - Player
-  - 
+  - PopUp
   - 
   - 
   - 
