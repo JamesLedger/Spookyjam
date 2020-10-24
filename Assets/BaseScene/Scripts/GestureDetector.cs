@@ -5,17 +5,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public struct Gesture
+{
+    public string name;
+    public List<Vector3> fingerData;
+    public UnityEvent onRecognised;
+}
+
 public class GestureDetector : MonoBehaviour
 {
-    [System.Serializable]
-    public struct Gesture
-    {
-        public string name;
-        public List<Vector3> fingerData;
-        public UnityEvent onRecognised;
-    }
-
-    public string Name;
+    
     public float threshhold = 0.1f;
     public OVRSkeleton leftSkeleton;
     public OVRSkeleton rightSkeleton;
@@ -29,6 +29,9 @@ public class GestureDetector : MonoBehaviour
     public bool debugMode = true;
     public CurrentHandInfo currentGestureInfo;
     public CurrentHandInfo previousGestureInfo;
+
+    // Private Variables
+    private string Name;
 
     // Start is called before the first frame update
     void Start()

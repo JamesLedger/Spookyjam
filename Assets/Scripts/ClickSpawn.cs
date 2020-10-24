@@ -24,13 +24,13 @@ public class ClickSpawn : MonoBehaviour
         GestureDetector detector = GetComponent<GestureDetector>();
         CurrentHandInfo info = detector.Recognise();
 
-        if (info.rightHandGesture == "ClickBegin")
+        if (info.rightHandGesture == "Candy")
         {
             spawnReady = true;
             hasSpawned = false;
         }
 
-        if (info.rightHandGesture == "ClickEnd" && spawnReady == true)
+        if (info.rightHandGesture == "Fireball" && spawnReady == true)
         {
             spawnReady = false;
             hasSpawned = true;
