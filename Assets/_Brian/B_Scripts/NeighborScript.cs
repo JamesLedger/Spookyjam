@@ -94,6 +94,9 @@ public class NeighborScript : MonoBehaviour
                     Debug.Log("<color=green>Monster killed.</color>");
                     GameManagerScript.playerScore++;
                     timerRunning = false;
+                    GameObject moveCheck = GameObject.Find("MoveManager");
+                    MovementManager currentVal = moveCheck.GetComponent<MovementManager>();
+                    currentVal.isWaiting = false;
                 }
             }
 
