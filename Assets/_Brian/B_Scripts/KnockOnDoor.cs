@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class KnockOnDoor : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class KnockOnDoor : MonoBehaviour
                 Debug.Log("<color=blue>Knocking recognized.");
                 isKnocking = true;
                 knockSFX.Play();
+                // Rotates for two seconds.
                 StartCoroutine(OpenDoor(targetAngle, 2f));
             }
         }   

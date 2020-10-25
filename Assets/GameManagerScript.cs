@@ -1,11 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class GameManagerScript : MonoBehaviour
 {
     public static int playerScore;
+    public static int playerLives = 3;
     
+    private static Object[] neighborOptions;
+
+    void Awake() 
+    {
+        // Populate neighborOptions
+        neighborOptions = Resources.LoadAll("Neighbors", typeof(Object));
+
+        foreach (var n in neighborOptions)
+        {
+            Debug.Log(n.name);
+        }
+        
+    }
     // Start is called before the first frame update
     void Start()
     {

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4105725678537474556}
   m_Layer: 0
-  m_Name: doorOffset (1)
+  m_Name: doorOffset_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +31,36 @@ Transform:
   - {fileID: 5976073826444042410}
   m_Father: {fileID: 8846717301426238671}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1603621668933634272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 158752515565921144}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &158752515565921144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603621668933634272}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.01894, y: -0.0089, z: 0.0293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8846717301426238671}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3308949674620887419
 GameObject:
@@ -418,6 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8846717301426238671}
   - component: {fileID: 1132218174133340002}
+  - component: {fileID: 7806953811139283887}
   m_Layer: 0
   m_Name: DoorFrame
   m_TagString: Untagged
@@ -438,6 +469,7 @@ Transform:
   m_Children:
   - {fileID: 8846717301852649174}
   - {fileID: 4105725678537474556}
+  - {fileID: 158752515565921144}
   m_Father: {fileID: 8326909767244004596}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -454,6 +486,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.26, z: 0.03}
   m_Center: {x: 0.02, y: 0.13, z: 0}
+--- !u!114 &7806953811139283887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8846717301426238670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5a0b8a011f9c440841b8b302709193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isKnocking: 0
+  neighborOptions: []
 --- !u!1 &8846717301434489761
 GameObject:
   m_ObjectHideFlags: 0
