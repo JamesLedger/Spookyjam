@@ -76,11 +76,23 @@ public class NeighborScript : MonoBehaviour
             */
 
             // Checks for FingerGun gesture while timer is above 0. (Must be monster)
-            if(gestureDetector.Recognise().leftHandGesture == "FingerGun" || gestureDetector.Recognise().rightHandGesture == "FingerGun" && !isHuman)
+            if(gestureDetector.Recognise().leftHandGesture == "FingerGun" || gestureDetector.Recognise().rightHandGesture == "FingerGun")
             {
-                Debug.Log("<color=green>Monster killed.</color>");
-                GameManagerScript.playerScore++;
-                timerRunning = false;
+                if(isHuman)
+                {
+                    responseTimer = 1f;
+                    timerRunning = false;
+
+                    // Remove one life.
+                    GameManagerScript.playerLives--;
+                }
+
+                else
+                {
+                    Debug.Log("<color=green>Monster killed.</color>");
+                    GameManagerScript.playerScore++;
+                    timerRunning = false;
+                }
             }
 
             // Must be last thing inside this if statement.
