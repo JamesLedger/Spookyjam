@@ -1,0 +1,5 @@
+Move forward towards a house
+knock on door and either a human or monster will appear
+If it is a monster it will try and kill you so you must kill it. If not you will lose lives.
+If it is a human you get sweets. If you kill a human you will lose a live.
+You kill by shooting the eyes of a monster by doing a finger gun pose.
