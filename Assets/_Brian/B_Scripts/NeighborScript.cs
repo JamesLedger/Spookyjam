@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class NeighborScript : MonoBehaviour
 {
-    /*
-    // Was trying to do it with Enums, gave up.
-    [System.Serializable]
-    public enum neighborState {human, monster};
-    */
     [Header("Neighbor Classification")]
     [Tooltip("If human neighbor, check true. If monster, leave as false.")]
     public bool isHuman;
@@ -22,8 +17,6 @@ public class NeighborScript : MonoBehaviour
 
     private GestureDetector gestureDetector;
 
-    public Vector3 currentAngle, upAngle;
-
     void Awake() 
     {
         // Finds a GameObject named Gesture Detector, and gets it's Gesture Detector component and assigns it to the variable.
@@ -34,14 +27,31 @@ public class NeighborScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentAngle = transform.eulerAngles;
-        upAngle = new Vector3(45, 45, 45);
+        Debug.Log("<color=red>Neighbor started.</color>");
         responseTimer = 10f;
+        timerRunning = false;
+    }
+
+
+     public IEnumerator FlipNeighbor(float time)
+    {
+        Debug.Log("<color=red>Flipping started.</color>");
+        float elapsedTime = 0f;
+
+        while (elapsedTime < time)
+        {
+            transform.RotateAround(transform.position, Vector3.right * -1, 179 * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.5f);
         timerRunning = true;
     }
 
+
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (responseTimer > 0 && timerRunning)
         {
@@ -63,10 +73,15 @@ public class NeighborScript : MonoBehaviour
             responseTimer -= Time.deltaTime;
             timerText.text = "" + responseTimer;
         }
-        else
+
+        else if(timerRunning)
         {
+            responseTimer = 1f;
+            timerRunning = false;
+
             // Remove one life.
             GameManagerScript.playerLives--;
+
         }
     }
 }

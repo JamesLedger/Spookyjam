@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7892178957999108494}
   - component: {fileID: 2007367448528741642}
   m_Layer: 0
-  m_Name: Human 1
+  m_Name: Monster_Alien
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,15 +56,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7892178957999108528}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.166, y: 0.111, z: 2.7}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
   - {fileID: 7892178957566908138}
   - {fileID: 7792797193074924686}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!54 &7892178957999108494
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -96,9 +96,6 @@ MonoBehaviour:
   isHuman: 0
   responseTimer: 0
   timerText: {fileID: 0}
-  gestureDetector: {fileID: 0}
-  currentAngle: {x: 0, y: 0, z: 0}
-  upAngle: {x: 0, y: 0, z: 0}
 --- !u!1 &7892178958102049843
 GameObject:
   m_ObjectHideFlags: 0
