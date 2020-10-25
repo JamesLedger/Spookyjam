@@ -17,12 +17,17 @@ public class NeighborScript : MonoBehaviour
 
     private GestureDetector gestureDetector;
 
+    private GameManagerScript gameMngr;
+    public GameObject leftHandAnchor, rightHandAnchor;
+
     void Awake() 
     {
         // Finds a GameObject named Gesture Detector, and gets it's Gesture Detector component and assigns it to the variable.
         // It's not pretty, but it works.
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
         timerText = this.transform.Find("TextDebug").GetComponent<TextMesh>();
+
+        gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,8 @@ public class NeighborScript : MonoBehaviour
         Debug.Log("<color=red>Neighbor started.</color>");
         responseTimer = 10f;
         timerRunning = false;
+        leftHandAnchor = gameMngr.leftHandAnchor;
+        rightHandAnchor = gameMngr.rightHandAnchor;
     }
 
 
@@ -55,16 +62,23 @@ public class NeighborScript : MonoBehaviour
     {
         if (responseTimer > 0 && timerRunning)
         {
+            /*
             // Checks for Candy gesture while timer is above 0. (Must be human)
-            if(gestureDetector.Recognise().leftHandGesture == "Candy" || gestureDetector.Recognise().rightHandGesture == "Candy" && isHuman)
+            if(
+               (gestureDetector.Recognise().leftHandGesture == "Candy" && (-30f < leftHandAnchor.transform.eulerAngles.x && leftHandAnchor.transform.eulerAngles.x < 10f)) || 
+               (gestureDetector.Recognise().rightHandGesture == "Candy" && (-30f < rightHandAnchor.transform.eulerAngles.x && rightHandAnchor.transform.eulerAngles.x < 10f)) 
+               && isHuman)
             {
+                Debug.Log("<color=green>Human gives candy.</color>");
                 GameManagerScript.playerScore++;
                 timerRunning = false;
             }
+            */
 
-            // Checks for Fireball gesture while timer is above 0. (Must be monster)
+            // Checks for FingerGun gesture while timer is above 0. (Must be monster)
             if(gestureDetector.Recognise().leftHandGesture == "FingerGun" || gestureDetector.Recognise().rightHandGesture == "FingerGun" && !isHuman)
             {
+                Debug.Log("<color=green>Monster killed.</color>");
                 GameManagerScript.playerScore++;
                 timerRunning = false;
             }

@@ -14,6 +14,8 @@ public class GameManagerScript : MonoBehaviour
     
     private Object[] monsterSkins, humanSkins;
 
+    public GameObject leftHandAnchor, rightHandAnchor;
+
     void Awake() 
     {
         neighborList = Resources.LoadAll("Neighbors", typeof(GameObject));
@@ -21,12 +23,12 @@ public class GameManagerScript : MonoBehaviour
         humanSkins = Resources.LoadAll("HumanSkins", typeof(Material));
 
         // Debugging
-        /*
+        
         foreach (var m in neighborList)
         {
             Debug.Log("<color=red>" + m.name + "</color>");
         }
-        
+        /*
         foreach (var m in monsterSkins)
         {
             Debug.Log("<color=green>" + m.name + "</color>");
