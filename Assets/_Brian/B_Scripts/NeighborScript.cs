@@ -40,7 +40,7 @@ public class NeighborScript : MonoBehaviour
 
         while (elapsedTime < time)
         {
-            transform.RotateAround(transform.position, Vector3.right * -1, 179 * Time.deltaTime);
+            transform.RotateAround(transform.position, Vector3.right * -1, 180 * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -63,7 +63,7 @@ public class NeighborScript : MonoBehaviour
             }
 
             // Checks for Fireball gesture while timer is above 0. (Must be monster)
-            if(gestureDetector.Recognise().leftHandGesture == "Fireball" || gestureDetector.Recognise().rightHandGesture == "Fireball" && !isHuman)
+            if(gestureDetector.Recognise().leftHandGesture == "FingerGun" || gestureDetector.Recognise().rightHandGesture == "FingerGun" && !isHuman)
             {
                 GameManagerScript.playerScore++;
                 timerRunning = false;
