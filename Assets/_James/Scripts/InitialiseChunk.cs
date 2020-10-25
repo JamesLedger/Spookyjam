@@ -11,10 +11,8 @@ public class InitialiseChunk : MonoBehaviour
     public List<GameObject> decorativePropList;
     public List<GameObject> characterList;
 
-    public List<GameObject> houseWallsList;
-    public List<GameObject> houseRoofList;
-    public List<GameObject> houseDoorList;
-    public List<GameObject> houseKnobList;
+    public List<GameObject> houseList;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,21 +40,13 @@ public class InitialiseChunk : MonoBehaviour
                 }
             }
 
-            ////Spawning Character
-            //GameObject characterSpot = Chunk.transform.GetChild(2).gameObject;
-
-            //int charSelection = Random.Range(0, characterList.Count);
-            //GameObject charObject = Instantiate(characterList[charSelection]);
-            //charObject.transform.position = characterSpot.transform.position;
-            //charObject.transform.parent = Chunk.transform;
-
             //Spawning House
             GameObject houseSpot = Chunk.transform.GetChild(3).gameObject;
 
-            int wallSelection = Random.Range(0, houseWallsList.Count);
-            GameObject wallObject = Instantiate(houseWallsList[wallSelection]);
-            wallObject.transform.position = houseSpot.transform.position;
-            wallObject.transform.parent = Chunk.transform;
+            int houseSelection = Random.Range(0, houseList.Count);
+            GameObject houseObject = Instantiate(houseList[houseSelection]);
+            houseObject.transform.position = houseSpot.transform.position;
+            houseObject.transform.parent = Chunk.transform;
 
         }        
     }
