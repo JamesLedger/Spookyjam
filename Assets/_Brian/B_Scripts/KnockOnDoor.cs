@@ -5,7 +5,6 @@ using UnityEditor;
 
 public class KnockOnDoor : MonoBehaviour
 {
-    
     public bool isKnocking;
 
     // Privates
@@ -13,7 +12,6 @@ public class KnockOnDoor : MonoBehaviour
     private GestureDetector gestureDetector;
     private GameObject spawnPoint;
     private GameManagerScript gameMngr;
-
     private GameObject myNeighbor;
 
     void Awake() 
@@ -63,7 +61,6 @@ public class KnockOnDoor : MonoBehaviour
             }
         }   
     }
-
 
     private IEnumerator OpenDoor(float time)
     {

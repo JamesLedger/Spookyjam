@@ -17,6 +17,20 @@ public class PopUpController : MonoBehaviour
         currentAngle = transform.eulerAngles;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "popUp")
+        {
+            lowerHouse = false;
+            raiseHouse = true;
+        }
+        else if(other.tag == "popDown")
+        {
+            raiseHouse = false;
+            lowerHouse = true;
+        }
+    }
+
     void Update() 
     {
         if(raiseHouse && !lowerHouse)

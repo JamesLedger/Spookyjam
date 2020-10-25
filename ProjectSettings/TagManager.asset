@@ -10,6 +10,7 @@ TagManager:
   - popUp
   - popDown
   - ResetChunk
+  - waitSpot
   layers:
   - Default
   - TransparentFX
