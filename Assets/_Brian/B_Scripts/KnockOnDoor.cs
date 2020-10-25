@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class KnockOnDoor : MonoBehaviour
 {
-    private GestureDetector gestureDetector;
+    
     public bool isKnocking;
+
+    // Privates
+
     private AudioSource knockSFX;
+    private GestureDetector gestureDetector;
+    private GameObject spawnPoint;
+
 
     // Neighbor Spawn
     public GameObject[] neighborOptions;
-    private GameObject spawnPoint;
 
     // Door Rotation Variables
     private Vector3 targetAngle, currentAngle;
@@ -63,18 +68,16 @@ public class KnockOnDoor : MonoBehaviour
             pivot.transform.RotateAround(pivot.transform.position, Vector3.up * -1, 45 * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
-            /*
-            currentAngle = new Vector3(
-                Mathf.LerpAngle(currentAngle.x, targetAngle.x, Time.deltaTime),
-                Mathf.LerpAngle(currentAngle.y, targetAngle.y, Time.deltaTime),
-                Mathf.LerpAngle(currentAngle.z, targetAngle.z, Time.deltaTime)
-            );
-            pivot.transform.eulerAngles = currentAngle;
-            */
         }
 
-        var index = Random.Range (0, neighborOptions.Length);
-        Instantiate(neighborOptions[index], spawnPoint.transform.position, neighborOptions[index].transform.rotation);
+        if(neighborOptions.Length < 1)
+        {
+            Debug.LogError("Neighbor list is empty.");
+        }
+        else
+        {
+            var index = Random.Range (0, neighborOptions.Length);
+            Instantiate(neighborOptions[index], spawnPoint.transform.position, neighborOptions[index].transform.rotation);
+        }
     }
-
 }
