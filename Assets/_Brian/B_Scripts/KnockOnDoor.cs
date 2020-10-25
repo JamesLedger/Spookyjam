@@ -20,7 +20,7 @@ public class KnockOnDoor : MonoBehaviour
     {
         knockSFX = GetComponent<AudioSource>();
         // Calculated in Editor, messing around with the door.
-        targetAngle = new Vector3(0f, -90f, 0f);
+        targetAngle = new Vector3(-90f, 0f, -90f);
         currentAngle = transform.eulerAngles;
 
         // Redundant because every default bool is false, but better safe than sorry. ¯\_(ツ)_/¯
@@ -37,12 +37,14 @@ public class KnockOnDoor : MonoBehaviour
             // if(handColliding == "Fist" && !isKnocking)
             if(gestureDetector.Recognise().leftHandGesture == "Fist" || gestureDetector.Recognise().rightHandGesture == "Fist" && !isKnocking)
             {
+                Debug.Log("<color=blue>Knocking recognized.");
                 isKnocking = true;
                 knockSFX.Play();
                 StartCoroutine(OpenDoor(targetAngle, 2f));
             }
         }   
     }
+
 
     private IEnumerator OpenDoor(Vector3 finishAngle, float time)
     {
@@ -51,19 +53,21 @@ public class KnockOnDoor : MonoBehaviour
 
         while (elapsedTime < time)
         {
+            pivot.transform.RotateAround(pivot.transform.position, Vector3.up * -1, 45 * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+            /*
             currentAngle = new Vector3(
                 Mathf.LerpAngle(currentAngle.x, targetAngle.x, Time.deltaTime),
                 Mathf.LerpAngle(currentAngle.y, targetAngle.y, Time.deltaTime),
                 Mathf.LerpAngle(currentAngle.z, targetAngle.z, Time.deltaTime)
             );
-
             pivot.transform.eulerAngles = currentAngle;
-
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
+            */
         }
 
         var index = Random.Range (0, neighborOptions.Length);
         Instantiate(neighborOptions[index], spawnPoint.transform.position, neighborOptions[index].transform.rotation);
     }
+
 }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/_James/Prefabs/Characters.meta
 guid: 7dc3bab677679b445a2ff795e0d0fa2f
+=======
+guid: fb662560468d48f4cbef01dec0810575
+>>>>>>> cebf0c6ed8daa550b91e17a713aa44418d6adb97:Assets/_Brian/B_Mat.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
