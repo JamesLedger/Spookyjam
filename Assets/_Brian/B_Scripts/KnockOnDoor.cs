@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class KnockOnDoor : MonoBehaviour
 {
-    public GestureDetector gestureDetector;
+    private GestureDetector gestureDetector;
     public bool isKnocking;
     private AudioSource knockSFX;
 
     // Neighbor Spawn
     public GameObject[] neighborOptions;
-    public GameObject spawnPoint;
+    private GameObject spawnPoint;
 
     // Door Rotation Variables
     private Vector3 targetAngle, currentAngle;
+
+
+    void Awake() 
+    {
+        gestureDetector = GameObject.Find("GestureDetector").GetComponent<GestureDetector>();
+        spawnPoint = this.transform.Find("Spawn").gameObject;
+    }
 
     // Start is called before the first frame update
     void Start()
