@@ -17,14 +17,15 @@ public class PopUpController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.LogError("shouldPopUp");
         if (other.tag == "popUp")
         {
+            Debug.Log("Pop Up");
             currentAngle = new Vector3(Mathf.LerpAngle(currentAngle.x, upAngle.x, Time.deltaTime * 5),0,0);
             transform.eulerAngles = currentAngle;
         }
         else if(other.tag == "popDown")
         {
+            Debug.Log("Pop Down");
             currentAngle = new Vector3(0, 0, 0);
             transform.eulerAngles = currentAngle;
         }
