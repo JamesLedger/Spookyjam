@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class NeighborScript : MonoBehaviour
 {
-    /*
-    // Was trying to do it with Enums, gave up.
-    [System.Serializable]
-    public enum neighborState {human, monster};
-    */
     [Header("Neighbor Classification")]
     [Tooltip("If human neighbor, check true. If monster, leave as false.")]
     public bool isHuman;
@@ -22,7 +17,8 @@ public class NeighborScript : MonoBehaviour
 
     private GestureDetector gestureDetector;
 
-    public Vector3 currentAngle, upAngle;
+    private GameManagerScript gameMngr;
+    public GameObject leftHandAnchor, rightHandAnchor;
 
     void Awake() 
     {
@@ -30,31 +26,59 @@ public class NeighborScript : MonoBehaviour
         // It's not pretty, but it works.
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
         timerText = this.transform.Find("TextDebug").GetComponent<TextMesh>();
+
+        gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }
     // Start is called before the first frame update
     void Start()
     {
-        currentAngle = transform.eulerAngles;
-        upAngle = new Vector3(45, 45, 45);
+        Debug.Log("<color=red>Neighbor started.</color>");
         responseTimer = 10f;
+        timerRunning = false;
+        leftHandAnchor = gameMngr.leftHandAnchor;
+        rightHandAnchor = gameMngr.rightHandAnchor;
+    }
+
+
+     public IEnumerator FlipNeighbor(float time)
+    {
+        Debug.Log("<color=red>Flipping started.</color>");
+        float elapsedTime = 0f;
+
+        while (elapsedTime < time)
+        {
+            transform.RotateAround(transform.position, Vector3.right * -1, 180 * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.5f);
         timerRunning = true;
     }
 
+
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (responseTimer > 0 && timerRunning)
         {
+            /*
             // Checks for Candy gesture while timer is above 0. (Must be human)
-            if(gestureDetector.Recognise().leftHandGesture == "Candy" || gestureDetector.Recognise().rightHandGesture == "Candy" && isHuman)
+            if(
+               (gestureDetector.Recognise().leftHandGesture == "Candy" && (-30f < leftHandAnchor.transform.eulerAngles.x && leftHandAnchor.transform.eulerAngles.x < 10f)) || 
+               (gestureDetector.Recognise().rightHandGesture == "Candy" && (-30f < rightHandAnchor.transform.eulerAngles.x && rightHandAnchor.transform.eulerAngles.x < 10f)) 
+               && isHuman)
             {
+                Debug.Log("<color=green>Human gives candy.</color>");
                 GameManagerScript.playerScore++;
                 timerRunning = false;
             }
+            */
 
-            // Checks for Fireball gesture while timer is above 0. (Must be monster)
-            if(gestureDetector.Recognise().leftHandGesture == "Fireball" || gestureDetector.Recognise().rightHandGesture == "Fireball" && !isHuman)
+            // Checks for FingerGun gesture while timer is above 0. (Must be monster)
+            if(gestureDetector.Recognise().leftHandGesture == "FingerGun" || gestureDetector.Recognise().rightHandGesture == "FingerGun" && !isHuman)
             {
+                Debug.Log("<color=green>Monster killed.</color>");
                 GameManagerScript.playerScore++;
                 timerRunning = false;
             }
@@ -63,10 +87,15 @@ public class NeighborScript : MonoBehaviour
             responseTimer -= Time.deltaTime;
             timerText.text = "" + responseTimer;
         }
-        else
+
+        else if(timerRunning)
         {
+            responseTimer = 1f;
+            timerRunning = false;
+
             // Remove one life.
             GameManagerScript.playerLives--;
+
         }
     }
 }
