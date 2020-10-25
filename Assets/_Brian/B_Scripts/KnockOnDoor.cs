@@ -14,10 +14,6 @@ public class KnockOnDoor : MonoBehaviour
     private GestureDetector gestureDetector;
     private GameObject spawnPoint;
 
-
-    // Neighbor Spawn
-    public GameObject[] neighborOptions;
-
     // Door Rotation Variables
     private Vector3 targetAngle, currentAngle;
 
@@ -72,14 +68,14 @@ public class KnockOnDoor : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        if(neighborOptions.Length < 1)
+        if(GameManagerScript.neighborOptions.Length < 1)
         {
             Debug.LogError("Neighbor list is empty.");
         }
         else
         {
-            var index = Random.Range (0, neighborOptions.Length);
-            Instantiate(neighborOptions[index], spawnPoint.transform.position, neighborOptions[index].transform.rotation);
+            var index = Random.Range (0, GameManagerScript.neighborOptions.Length);
+            //Instantiate(GameManagerScript.neighborOptions[index], spawnPoint.transform.position, GameManagerScript.neighborOptions[index].transform.rotation);
         }
     }
 }

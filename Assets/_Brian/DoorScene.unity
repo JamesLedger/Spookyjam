@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5229619, g: 0.8543622, b: 0.9811321, a: 1}
+  m_FogColor: {r: 1, g: 0, b: 0.015590668, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.06
   m_LinearFogStart: 0
@@ -290,10 +290,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4877623593714289592, guid: 2da0577b544ddd84f803347db69d9801,
+    - target: {fileID: 4809924419178844842, guid: 2da0577b544ddd84f803347db69d9801,
         type: 3}
-      propertyPath: downAngle.x
-      value: -180
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2da0577b544ddd84f803347db69d9801, type: 3}

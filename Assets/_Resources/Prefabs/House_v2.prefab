@@ -172,7 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upAngle: {x: -90, y: 0, z: 0}
-  downAngle: {x: -90, y: 0, z: 0}
+  downAngle: {x: -180, y: 0, z: 0}
+  raiseHouse: 0
+  lowerHouse: 0
 --- !u!1 &3308949675080485586
 GameObject:
   m_ObjectHideFlags: 0
