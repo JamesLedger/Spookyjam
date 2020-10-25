@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5229619, g: 0.8543622, b: 0.9811321, a: 1}
+  m_FogColor: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.06
   m_LinearFogStart: 0
@@ -160,7 +160,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204341279}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -655,7 +655,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873174416}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -808,6 +808,8 @@ MonoBehaviour:
   - {fileID: 6290700488879974395, guid: cd19987c23e3d8a43b842a34255b6374, type: 3}
   - {fileID: 888150498490121747, guid: cb2b02fd3371bbe4bb926b85f5f7eb27, type: 3}
   - {fileID: 3600734528029809398, guid: d91ca1bf099c49c4c9b6f9764060bd07, type: 3}
+  characterList:
+  - {fileID: 5491311464041505857, guid: e1ea91c03e8e1764b924360a82ec53f5, type: 3}
 --- !u!4 &1799117517
 Transform:
   m_ObjectHideFlags: 0
@@ -964,7 +966,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092299639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1457,7 +1459,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.52156866, g: 0.85490197, b: 0.98039216, a: 0.019607844}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
