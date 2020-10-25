@@ -62,6 +62,8 @@ public class NeighborScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        timerText.text = "" + responseTimer;
+
         if (responseTimer > 0 && timerRunning)
         {
             /*
@@ -82,9 +84,6 @@ public class NeighborScript : MonoBehaviour
             {
                 if(isHuman)
                 {
-                    responseTimer = 1f;
-                    timerRunning = false;
-
                     // Remove one life.
                     GameManagerScript.playerLives--;
                 }
@@ -93,16 +92,16 @@ public class NeighborScript : MonoBehaviour
                 {
                     Debug.Log("<color=green>Monster killed.</color>");
                     GameManagerScript.playerScore++;
-                    timerRunning = false;
-                    GameObject moveCheck = GameObject.Find("MoveManager");
-                    MovementManager currentVal = moveCheck.GetComponent<MovementManager>();
-                    currentVal.isWaiting = false;
+                    
                 }
+
+                responseTimer = 1f;
+                timerRunning = false;
+                GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
             }
 
             // Must be last thing inside this if statement.
             responseTimer -= Time.deltaTime;
-            timerText.text = "" + responseTimer;
         }
 
         else if(timerRunning)
@@ -113,6 +112,7 @@ public class NeighborScript : MonoBehaviour
             if(isHuman)
             {
                 GameManagerScript.playerLives++;
+                GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
             }
             else
             {

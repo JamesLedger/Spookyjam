@@ -40,7 +40,7 @@ public class KnockOnDoor : MonoBehaviour
         {
             var index = Random.Range(0, gameMngr.neighborList.Length);
             myNeighbor = Object.Instantiate(gameMngr.neighborList[index], spawnPoint.transform.position, Quaternion.Euler(90f, 0f, 0f), spawnPoint.transform)as GameObject;
-            
+
         }
     }
 
@@ -51,7 +51,7 @@ public class KnockOnDoor : MonoBehaviour
             // Too tired to write the fix. But it involves parametrizing the if function below into:
             // if(other.gameObject.name == "LeftHandPrefab", handColliding == LeftHandPrefab.SkeletonMesh) or something like that.
             // if(handColliding == "Fist" && !isKnocking)
-            if(gestureDetector.Recognise().leftHandGesture == "Fist" || gestureDetector.Recognise().rightHandGesture == "Fist" && isKnocking == false)
+            if((gestureDetector.Recognise().leftHandGesture == "Fist" || gestureDetector.Recognise().rightHandGesture == "Fist") && isKnocking == false)
             {
                 isKnocking = true;
                 Debug.Log("Door triggered by" + other.gameObject.name);
