@@ -45,7 +45,7 @@ public class InitialiseChunk : MonoBehaviour
 
             int houseSelection = Random.Range(0, houseList.Count);
             GameObject houseObject = Instantiate(houseList[houseSelection]);
-            houseObject.transform.position = houseSpot.transform.position;
+            houseObject.transform.position = houseSpot.transform.position - new Vector3(0f, 0.1f, 0f);
             houseObject.transform.parent = Chunk.transform;
 
         }        
