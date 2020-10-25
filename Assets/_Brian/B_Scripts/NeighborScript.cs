@@ -28,6 +28,8 @@ public class NeighborScript : MonoBehaviour
         timerText = this.transform.Find("TextDebug").GetComponent<TextMesh>();
 
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+
+
     }
     // Start is called before the first frame update
     void Start()
@@ -92,6 +94,9 @@ public class NeighborScript : MonoBehaviour
                     Debug.Log("<color=green>Monster killed.</color>");
                     GameManagerScript.playerScore++;
                     timerRunning = false;
+                    GameObject moveCheck = GameObject.Find("MoveManager");
+                    MovementManager currentVal = moveCheck.GetComponent<MovementManager>();
+                    currentVal.isWaiting = false;
                 }
             }
 
@@ -105,9 +110,15 @@ public class NeighborScript : MonoBehaviour
             responseTimer = 1f;
             timerRunning = false;
 
-            // Remove one life.
-            GameManagerScript.playerLives--;
-
+            if(isHuman)
+            {
+                GameManagerScript.playerLives++;
+            }
+            else
+            {
+                // Remove one life.
+                GameManagerScript.playerLives--;
+            }
         }
     }
 }

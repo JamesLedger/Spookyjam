@@ -40,6 +40,7 @@ public class KnockOnDoor : MonoBehaviour
         {
             var index = Random.Range(0, gameMngr.neighborList.Length);
             myNeighbor = Object.Instantiate(gameMngr.neighborList[index], spawnPoint.transform.position, Quaternion.Euler(90f, 0f, 0f), spawnPoint.transform)as GameObject;
+            
         }
     }
 
