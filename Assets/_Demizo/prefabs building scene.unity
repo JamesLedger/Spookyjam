@@ -1232,6 +1232,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 3914484893656433890, guid: 69671b9df3f1ce24399bcff5b9c113e0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69671b9df3f1ce24399bcff5b9c113e0, type: 3}
 --- !u!1001 &1026979008
