@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 
 public class NeighborScript : MonoBehaviour
@@ -20,7 +22,7 @@ public class NeighborScript : MonoBehaviour
     private GameManagerScript gameMngr;
     private GameObject leftHandAnchor, rightHandAnchor;
 
-    void Awake() 
+    void Awake()
     {
         // Finds a GameObject named Gesture Detector, and gets it's Gesture Detector component and assigns it to the variable.
         // It's not pretty, but it works.
@@ -76,7 +78,7 @@ public class NeighborScript : MonoBehaviour
                     GameManagerScript.playerScore++;
 
                 }
-                
+
                 StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
                 responseTimer = 1f;
                 timerRunning = false;
@@ -113,15 +115,13 @@ public class NeighborScript : MonoBehaviour
 
     public IEnumerator MonsterBite()
     {
-        
-        Debug.Log("Monster Bite");       
-        yield return new WaitForSeconds(0.5f);
-        // Play SFX here
-        // Play PS here
 
-        //Bring fog in 
-        fogDistance += 0.03f;
-        RenderSettings.fogDensity = fogDistance;
+        Debug.Log("Monster Bite");
+
+        Object bPrefab = Resources.Load("Assets/Resources/Prefabs/bloodburst");
+        GameObject bloodSFX = (GameObject)GameObject.Instantiate(bPrefab, transform.position, Quaternion.identity);
+        Destroy(bloodSFX, 1f);
+        yield return new WaitForSeconds(1f);
     }
 
     public IEnumerator FlipNeighbor(float time)

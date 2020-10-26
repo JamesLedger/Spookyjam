@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -46,5 +47,16 @@ public class GameManagerScript : MonoBehaviour
         // Pure debugging.
         playerLivesDisplay = playerLives;
         playerScoreDisplay = playerScore;
+
+        if (playerLives < 1)
+        {
+            StartCoroutine(LoseGame());
+        }
+    }
+
+    public IEnumerator LoseGame()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("lose", LoadSceneMode.Single);
     }
 }
