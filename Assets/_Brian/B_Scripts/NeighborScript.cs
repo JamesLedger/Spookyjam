@@ -32,20 +32,8 @@ public class NeighborScript : MonoBehaviour
 
         //initialise fogDistance at 0
         fogDistance = 0f;
-
-        // Get costume (material)
-        var costume = GetComponentInChildren<MeshRenderer>().material;
-        // Choose costume from list
-        if(isHuman)
-        {
-            //GetComponentInChildren<MeshRenderer>().material = costume;
-        }
-        else
-        {
-
-        }
-
-
+        responseTimer = 2f;
+        timerRunning = false;
     }
     // Start is called before the first frame update
     void Start()
