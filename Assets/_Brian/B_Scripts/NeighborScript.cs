@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class NeighborScript : MonoBehaviour
 {
+
     [Header("Neighbor Classification")]
     [Tooltip("If human neighbor, check true. If monster, leave as false.")]
     public bool isHuman;
@@ -21,14 +22,17 @@ public class NeighborScript : MonoBehaviour
     private GameManagerScript gameMngr;
     private GameObject leftHandAnchor, rightHandAnchor;
 
-    void Awake() 
+    void Awake()
     {
         // Finds a GameObject named Gesture Detector, and gets it's Gesture Detector component and assigns it to the variable.
         // It's not pretty, but it works.
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
 
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
-        
+
+        //initialise fogDistance at 0
+        fogDistance = 0f;
+
         // Get costume (material)
         var costume = GetComponentInChildren<MeshRenderer>().material;
         // Choose costume from list
@@ -74,7 +78,7 @@ public class NeighborScript : MonoBehaviour
                     GameManagerScript.playerScore++;
 
                 }
-                
+
                 StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
                 responseTimer = 1f;
                 timerRunning = false;
@@ -107,11 +111,13 @@ public class NeighborScript : MonoBehaviour
         }
     }
 
+    public float fogDistance;
 
     public IEnumerator MonsterBite()
     {
-        Debug.Log("Monster Bite");       
-        
+
+        Debug.Log("Monster Bite");
+
         Object bPrefab = Resources.Load("Assets/Resources/Prefabs/bloodburst");
         GameObject bloodSFX = (GameObject)GameObject.Instantiate(bPrefab, transform.position, Quaternion.identity);
         Destroy(bloodSFX, 1f);
