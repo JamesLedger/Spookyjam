@@ -10,8 +10,8 @@ public class GameManagerScript : MonoBehaviour
     public Object[] neighborList;
 
     // Static
-    public static int playerScore = 0;
-    public static int playerLives = 3;
+    public static int playerScore;
+    public static int playerLives;
 
     // Debugging
     public int playerScoreDisplay, playerLivesDisplay;
@@ -41,6 +41,9 @@ public class GameManagerScript : MonoBehaviour
             Debug.Log("<color=blue>" + m.name  + "</color>");
         }
         */
+
+        playerScore = 0;
+        playerLives = 3;
     }
     private void LateUpdate() 
     {
