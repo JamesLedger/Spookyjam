@@ -11,23 +11,33 @@ public class NeighborScript : MonoBehaviour
 
     [Space]
     public float responseTimer;
-    public TextMesh timerText;
 
     private bool timerRunning;
 
     private GestureDetector gestureDetector;
 
     private GameManagerScript gameMngr;
-    public GameObject leftHandAnchor, rightHandAnchor;
+    private GameObject leftHandAnchor, rightHandAnchor;
 
     void Awake() 
     {
         // Finds a GameObject named Gesture Detector, and gets it's Gesture Detector component and assigns it to the variable.
         // It's not pretty, but it works.
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
-        timerText = this.transform.Find("TextDebug").GetComponent<TextMesh>();
 
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        
+        // Get costume (material)
+        var costume = GetComponentInChildren<MeshRenderer>().material;
+        // Choose costume from list
+        if(isHuman)
+        {
+            //GetComponentInChildren<MeshRenderer>().material = costume;
+        }
+        else
+        {
+
+        }
 
 
     }
@@ -35,7 +45,8 @@ public class NeighborScript : MonoBehaviour
     void Start()
     {
         Debug.Log("<color=red>Neighbor started.</color>");
-        responseTimer = 10f;
+        // Timer to "respond" to neighbor
+        responseTimer = 1f;
         timerRunning = false;
         leftHandAnchor = gameMngr.leftHandAnchor;
         rightHandAnchor = gameMngr.rightHandAnchor;
@@ -44,6 +55,9 @@ public class NeighborScript : MonoBehaviour
 
      public IEnumerator FlipNeighbor(float time)
     {
+        
+
+
         Debug.Log("<color=red>Flipping started.</color>");
         float elapsedTime = 0f;
 
@@ -62,8 +76,6 @@ public class NeighborScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        timerText.text = "" + responseTimer;
-
         if (responseTimer > 0 && timerRunning)
         {
             /*
@@ -112,13 +124,14 @@ public class NeighborScript : MonoBehaviour
             if(isHuman)
             {
                 GameManagerScript.playerLives++;
-                GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
             }
             else
             {
                 // Remove one life.
                 GameManagerScript.playerLives--;
             }
+            
+            GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
         }
     }
 }

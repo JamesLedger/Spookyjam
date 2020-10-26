@@ -58,7 +58,7 @@ public class KnockOnDoor : MonoBehaviour
                 Debug.Log("<color=blue>Knocking recognized.</color>");
                 knockSFX.Play();
                 // Rotates for two seconds.
-                StartCoroutine(OpenDoor(2f));
+                StartCoroutine(OpenDoor(0.5f));
             }
         }   
     }
@@ -70,7 +70,7 @@ public class KnockOnDoor : MonoBehaviour
 
         while (elapsedTime < time)
         {
-            pivot.transform.RotateAround(pivot.transform.position, Vector3.up * -1, 45 * Time.deltaTime);
+            pivot.transform.RotateAround(pivot.transform.position, Vector3.up * -1, 170 * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
