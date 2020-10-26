@@ -24,14 +24,14 @@ public class KnockOnDoor : MonoBehaviour
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         
         knockSFX = GetComponent<AudioSource>();
+
+        // Redundant because every default bool is false, but better safe than sorry. ¯\_(ツ)_/¯
+        isKnocking = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        // Redundant because every default bool is false, but better safe than sorry. ¯\_(ツ)_/¯
-        isKnocking = false;
-
         if(gameMngr.neighborList.Length < 1)
         {
             Debug.LogError("Neighbor list is empty.");
@@ -58,7 +58,8 @@ public class KnockOnDoor : MonoBehaviour
                 Debug.Log("<color=blue>Knocking recognized.</color>");
                 knockSFX.Play();
                 // Rotates for two seconds.
-                StartCoroutine(OpenDoor(0.5f));
+                // Potential fix for all doors being open after a while.
+                StartCoroutine(this.GetComponent<KnockOnDoor>().OpenDoor(0.5f));
             }
         }   
     }
