@@ -29,9 +29,7 @@ public class NeighborScript : MonoBehaviour
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
 
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
-
-        //initialise fogDistance at 0
-        fogDistance = 0f;
+   
         responseTimer = 2f;
         timerRunning = false;
     }
@@ -98,8 +96,6 @@ public class NeighborScript : MonoBehaviour
             GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
         }
     }
-
-    public float fogDistance;
 
     public IEnumerator MonsterBite()
     {
