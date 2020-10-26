@@ -93,23 +93,12 @@ public class NeighborScript : MonoBehaviour
                 // Remove one life.
                 GameManagerScript.playerLives--;
 
-                StartCoroutine(this.GetComponent<NeighborScript>().MonsterBite());
+
             }
 
             StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
             GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
         }
-    }
-
-    public IEnumerator MonsterBite()
-    {
-
-        Debug.Log("Monster Bite");
-
-        Object bPrefab = Resources.Load("Assets/Resources/Prefabs/bloodburst");
-        GameObject bloodSFX = (GameObject)GameObject.Instantiate(bPrefab, transform.position, Quaternion.identity);
-        Destroy(bloodSFX, 1f);
-        yield return new WaitForSeconds(1f);
     }
 
     public IEnumerator FlipNeighbor(float time)
