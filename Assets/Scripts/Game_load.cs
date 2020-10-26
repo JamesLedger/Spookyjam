@@ -11,19 +11,29 @@ public class Game_load : MonoBehaviour
 
     private GestureDetector gestureDetector;
 
+    private int counter;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        counter = 0;
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gestureDetector.Recognise().leftHandGesture == "Ok" || gestureDetector.Recognise().rightHandGesture == "Ok")
+        if (counter > 200)
         {
-            // load into waiting room scene
-            SceneManager.LoadScene(waitingRoomSceneIndex);
+            if (gestureDetector.Recognise().leftHandGesture == "Ok" || gestureDetector.Recognise().rightHandGesture == "Ok")
+            {  
+                // load into waiting room scene
+                SceneManager.LoadScene(waitingRoomSceneIndex);
+            }
+        }
+        else
+        {
+            counter++;
         }
     }
 }

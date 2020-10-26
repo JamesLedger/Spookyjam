@@ -10,15 +10,26 @@ public class StartGesture : MonoBehaviour
     void Awake()
     {
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
+        counter = 0;
     }
+
+    int counter;
 
     // Update is called once per frame
     void Update()
     {
-        if (gestureDetector.Recognise().leftHandGesture == "Ok" || gestureDetector.Recognise().rightHandGesture == "Ok")
+        if (counter > 200)
         {
-            Destroy(gameObject);
-            GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
+            if (gestureDetector.Recognise().leftHandGesture == "Ok" || gestureDetector.Recognise().rightHandGesture == "Ok")
+            {
+                Destroy(gameObject);
+                GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
+
+            }
+        }
+        else
+        {
+            counter++;
         }
     }
 }
