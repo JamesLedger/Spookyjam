@@ -43,7 +43,7 @@ public class GameManagerScript : MonoBehaviour
         */
 
         playerScore = 0;
-        playerLives = 3;
+        playerLives = 1;
     }
     private void LateUpdate() 
     {

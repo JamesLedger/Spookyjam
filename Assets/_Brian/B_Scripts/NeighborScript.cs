@@ -22,6 +22,8 @@ public class NeighborScript : MonoBehaviour
     private GameManagerScript gameMngr;
     private GameObject leftHandAnchor, rightHandAnchor;
 
+    private GameObject vrParticle;
+
     void Awake()
     {
         // Finds a GameObject named Gesture Detector, and gets it's Gesture Detector component and assigns it to the variable.
@@ -29,6 +31,7 @@ public class NeighborScript : MonoBehaviour
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
 
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+        vrParticle = GameObject.Find("bloodburst");
 
         //initialise fogDistance at 0
         fogDistance = 0f;
@@ -54,10 +57,12 @@ public class NeighborScript : MonoBehaviour
             // Checks for FingerGun gesture while timer is above 0. (Must be monster)
             if(gestureDetector.Recognise().leftHandGesture == "FingerGun" || gestureDetector.Recognise().rightHandGesture == "FingerGun")
             {
+                timerRunning = false;
                 if(isHuman)
                 {
                     // Remove one life.
-                    GameManagerScript.playerLives--;
+                    vrParticle.GetComponent<ParticleSystem>().Play();
+                    vrParticle.GetComponent<AudioSource>().Play();
                 }
 
                 else
@@ -69,7 +74,6 @@ public class NeighborScript : MonoBehaviour
 
                 StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
                 responseTimer = 1f;
-                timerRunning = false;
                 GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
             }
 
