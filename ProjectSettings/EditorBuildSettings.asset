@@ -21,12 +21,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ForwardDoors.unity
     guid: 1e59f390957356740b23b021992150d6
   - enabled: 1
+    path: Assets/_James/StartArea.unity
+    guid: f2dfe0eac6b1d8d489c9956d29e218d1
+  - enabled: 1
     path: Assets/_James/ProceduralChunks.unity
     guid: d5bf0b35fe0577d4bbe91a323c34f598
   - enabled: 0
     path: Assets/_Brian/DoorScene_base.unity
     guid: ae67588861b19a54d8521b187a828a19
-  - enabled: 0
-    path: Assets/_James/StartArea.unity
-    guid: f2dfe0eac6b1d8d489c9956d29e218d1
   m_configObjects: {}
