@@ -12,18 +12,16 @@ public class GameManagerScript : MonoBehaviour
     public static int playerScore;
     public static int playerLives = 3;
     
-    private Object[] monsterSkins, humanSkins;
+    public List<Material> monsterSkins, humanSkins;
 
     public GameObject leftHandAnchor, rightHandAnchor;
 
     void Awake() 
     {
         neighborList = Resources.LoadAll("Neighbors", typeof(GameObject));
-        monsterSkins = Resources.LoadAll("MonsterSkins", typeof(Material));
-        humanSkins = Resources.LoadAll("HumanSkins", typeof(Material));
 
         // Debugging
-        
+        /*
         foreach (var m in neighborList)
         {
             Debug.Log("<color=red>" + m.name + "</color>");

@@ -30,7 +30,7 @@ public class pauseOnCollide : MonoBehaviour
             MovementManager currentVal = moveCheck.GetComponent<MovementManager>();
             currentVal.isWaiting = true;
 
-            Debug.LogError("booping ");
+            Debug.Log("booping ");
         }
     }
 }
