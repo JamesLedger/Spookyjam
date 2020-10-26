@@ -52,27 +52,6 @@ public class NeighborScript : MonoBehaviour
         rightHandAnchor = gameMngr.rightHandAnchor;
     }
 
-
-     public IEnumerator FlipNeighbor(float time)
-    {
-        
-
-
-        Debug.Log("<color=red>Flipping started.</color>");
-        float elapsedTime = 0f;
-
-        while (elapsedTime < time)
-        {
-            transform.RotateAround(transform.position, Vector3.right * -1, 180 * Time.deltaTime);
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitForSeconds(0.5f);
-        timerRunning = true;
-    }
-
-
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -98,13 +77,14 @@ public class NeighborScript : MonoBehaviour
                 {
                     // Remove one life.
                     GameManagerScript.playerLives--;
+                    StartCoroutine(this.GetComponent<NeighborScript>().SlideHuman(0.5f));
                 }
 
                 else
                 {
                     Debug.Log("<color=green>Monster killed.</color>");
                     GameManagerScript.playerScore++;
-                    
+                    StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
                 }
 
                 responseTimer = 1f;
@@ -130,8 +110,52 @@ public class NeighborScript : MonoBehaviour
                 // Remove one life.
                 GameManagerScript.playerLives--;
             }
-            
+
+            StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
             GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
         }
+    }
+
+    public IEnumerator FlipNeighbor(float time)
+    {
+        Debug.Log("<color=red>Flipping started.</color>");
+        float elapsedTime = 0f;
+
+        while (elapsedTime < time)
+        {
+            transform.RotateAround(transform.position, Vector3.right * -1, 180 * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.5f);
+        timerRunning = true;
+    }
+
+    public IEnumerator KillMonster(float time)
+    {
+        Debug.Log("<color=red>Slidding started.</color>");
+        float elapsedTime = 0f;
+
+        while (elapsedTime < time)
+        {
+            transform.RotateAround(transform.position, Vector3.right, 180 * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    public IEnumerator SlideHuman(float time)
+    {
+        Debug.Log("<color=red>Slidding started.</color>");
+        float elapsedTime = 0f;
+
+        while (elapsedTime < time)
+        {
+            transform.RotateAround((transform.position - new Vector3(0.5f, 0f, 0f)), Vector3.right, 180 * Time.deltaTime);
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitForSeconds(0.5f);
     }
 }
