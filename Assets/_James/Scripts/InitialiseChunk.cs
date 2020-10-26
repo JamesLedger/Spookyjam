@@ -35,6 +35,7 @@ public class InitialiseChunk : MonoBehaviour
                     GameObject decorativeProp = Instantiate(decorativePropList[selection]);
                     decorativeProp.transform.position = decorativePropTransform.position;
                     decorativeProp.transform.parent = decorativePropTransform.transform;
+                    decorativeProp.transform.rotation = decorativePropTransform.rotation;
                 }
             }
 

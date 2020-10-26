@@ -25,6 +25,8 @@ public class KnockOnDoor : MonoBehaviour
         
         knockSFX = GetComponent<AudioSource>();
 
+        
+
         // Redundant because every default bool is false, but better safe than sorry. ¯\_(ツ)_/¯
         isKnocking = false;
     }

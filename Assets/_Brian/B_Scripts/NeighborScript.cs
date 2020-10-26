@@ -57,19 +57,6 @@ public class NeighborScript : MonoBehaviour
     {
         if (responseTimer > 0 && timerRunning)
         {
-            /*
-            // Checks for Candy gesture while timer is above 0. (Must be human)
-            if(
-               (gestureDetector.Recognise().leftHandGesture == "Candy" && (-30f < leftHandAnchor.transform.eulerAngles.x && leftHandAnchor.transform.eulerAngles.x < 10f)) || 
-               (gestureDetector.Recognise().rightHandGesture == "Candy" && (-30f < rightHandAnchor.transform.eulerAngles.x && rightHandAnchor.transform.eulerAngles.x < 10f)) 
-               && isHuman)
-            {
-                Debug.Log("<color=green>Human gives candy.</color>");
-                GameManagerScript.playerScore++;
-                timerRunning = false;
-            }
-            */
-
             // Checks for FingerGun gesture while timer is above 0. (Must be monster)
             if(gestureDetector.Recognise().leftHandGesture == "FingerGun" || gestureDetector.Recognise().rightHandGesture == "FingerGun")
             {
@@ -77,16 +64,16 @@ public class NeighborScript : MonoBehaviour
                 {
                     // Remove one life.
                     GameManagerScript.playerLives--;
-                    StartCoroutine(this.GetComponent<NeighborScript>().SlideHuman(0.5f));
                 }
 
                 else
                 {
                     Debug.Log("<color=green>Monster killed.</color>");
                     GameManagerScript.playerScore++;
-                    StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
-                }
 
+                }
+                
+                StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
                 responseTimer = 1f;
                 timerRunning = false;
                 GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
@@ -103,17 +90,29 @@ public class NeighborScript : MonoBehaviour
 
             if(isHuman)
             {
-                GameManagerScript.playerLives++;
+                GameManagerScript.playerScore++;
             }
             else
             {
                 // Remove one life.
                 GameManagerScript.playerLives--;
+
+                StartCoroutine(this.GetComponent<NeighborScript>().MonsterBite());
             }
 
             StartCoroutine(this.GetComponent<NeighborScript>().KillMonster(0.5f));
             GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
         }
+    }
+
+
+    public IEnumerator MonsterBite()
+    {
+        Debug.Log("Monster Bite");       
+        yield return new WaitForSeconds(0.5f);
+
+        // Play SFX here
+        // Play PS here
     }
 
     public IEnumerator FlipNeighbor(float time)
@@ -139,20 +138,6 @@ public class NeighborScript : MonoBehaviour
         while (elapsedTime < time)
         {
             transform.RotateAround(transform.position, Vector3.right, 180 * Time.deltaTime);
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitForSeconds(0.5f);
-    }
-
-    public IEnumerator SlideHuman(float time)
-    {
-        Debug.Log("<color=red>Slidding started.</color>");
-        float elapsedTime = 0f;
-
-        while (elapsedTime < time)
-        {
-            transform.RotateAround((transform.position - new Vector3(0.5f, 0f, 0f)), Vector3.right, 180 * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
