@@ -11,6 +11,9 @@ public class GameManagerScript : MonoBehaviour
     // Static
     public static int playerScore;
     public static int playerLives = 3;
+
+    // Debugging
+    public int playerScoreDisplay, playerLivesDisplay;
     
     public List<Material> monsterSkins, humanSkins;
 
@@ -37,5 +40,11 @@ public class GameManagerScript : MonoBehaviour
             Debug.Log("<color=blue>" + m.name  + "</color>");
         }
         */
+    }
+    private void LateUpdate() 
+    {
+        // Pure debugging.
+        playerLivesDisplay = playerLives;
+        playerScoreDisplay = playerScore;
     }
 }
