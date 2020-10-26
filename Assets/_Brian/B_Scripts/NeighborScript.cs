@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class NeighborScript : MonoBehaviour
 {
+
     [Header("Neighbor Classification")]
     [Tooltip("If human neighbor, check true. If monster, leave as false.")]
     public bool isHuman;
@@ -108,9 +109,9 @@ public class NeighborScript : MonoBehaviour
 
     public IEnumerator MonsterBite()
     {
+        
         Debug.Log("Monster Bite");       
         yield return new WaitForSeconds(0.5f);
-
         // Play SFX here
         // Play PS here
     }
