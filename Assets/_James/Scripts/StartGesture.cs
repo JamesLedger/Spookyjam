@@ -21,9 +21,10 @@ public class StartGesture : MonoBehaviour
     void Update()
     {
         startTime += Time.deltaTime;
-        if ((gestureDetector.Recognise().leftHandGesture == "Ok" || gestureDetector.Recognise().rightHandGesture == "Ok") && startTime > 5f)
+        if ((gestureDetector.Recognise().leftHandGesture == "Ok" || gestureDetector.Recognise().rightHandGesture == "Ok") && startTime > 0.5f)
         {
-            counter++;
+            GameObject.Find("MoveManager").GetComponent<MovementManager>().isWaiting = false;
+            Destroy(gameObject);
         }
     }
 }
