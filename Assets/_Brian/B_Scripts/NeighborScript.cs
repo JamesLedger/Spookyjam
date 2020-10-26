@@ -33,8 +33,6 @@ public class NeighborScript : MonoBehaviour
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
         vrParticle = GameObject.Find("bloodburst");
 
-        //initialise fogDistance at 0
-        fogDistance = 0f;
         responseTimer = 2f;
         timerRunning = false;
     }
