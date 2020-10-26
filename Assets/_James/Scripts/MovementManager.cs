@@ -8,6 +8,6 @@ public class MovementManager :MonoBehaviour
 
     void Awake()
     {
-        isWaiting = false;
+        isWaiting = true;
     }
 }
