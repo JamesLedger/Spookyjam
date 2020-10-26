@@ -27,7 +27,10 @@ public class NeighborScript : MonoBehaviour
         gestureDetector = GameObject.Find("/GestureDetector").GetComponent<GestureDetector>();
 
         gameMngr = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
-        
+
+        //initialise fogDistance at 0
+        fogDistance = 0f;
+
         // Get costume (material)
         var costume = GetComponentInChildren<MeshRenderer>().material;
         // Choose costume from list
@@ -106,6 +109,7 @@ public class NeighborScript : MonoBehaviour
         }
     }
 
+    public float fogDistance;
 
     public IEnumerator MonsterBite()
     {
@@ -114,6 +118,10 @@ public class NeighborScript : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         // Play SFX here
         // Play PS here
+
+        //Bring fog in 
+        fogDistance += 0.03f;
+        RenderSettings.fogDensity = fogDistance;
     }
 
     public IEnumerator FlipNeighbor(float time)
