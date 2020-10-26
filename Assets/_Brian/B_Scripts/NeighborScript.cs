@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 
 public class NeighborScript : MonoBehaviour
@@ -109,10 +111,11 @@ public class NeighborScript : MonoBehaviour
     public IEnumerator MonsterBite()
     {
         Debug.Log("Monster Bite");       
-        yield return new WaitForSeconds(0.5f);
-
-        // Play SFX here
-        // Play PS here
+        
+        Object bPrefab = Resources.Load("Assets/Resources/Prefabs/bloodburst");
+        GameObject bloodSFX = (GameObject)GameObject.Instantiate(bPrefab, transform.position, Quaternion.identity);
+        Destroy(bloodSFX, 1f);
+        yield return new WaitForSeconds(1f);
     }
 
     public IEnumerator FlipNeighbor(float time)

@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Brian/DoorScene_base.unity
     guid: ae67588861b19a54d8521b187a828a19
+  - enabled: 1
+    path: Assets/_James/lose.unity
+    guid: fb2c8fd43c708c648aecb2be5f9d0eb4
   m_configObjects: {}
