@@ -103,8 +103,6 @@ public class NeighborScript : MonoBehaviour
         }
     }
 
-    public float fogDistance;
-
     public IEnumerator MonsterBite()
     {
 
