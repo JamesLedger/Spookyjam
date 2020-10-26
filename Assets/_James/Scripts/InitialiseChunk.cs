@@ -9,8 +9,6 @@ public class InitialiseChunk : MonoBehaviour
     public int decorationChance;
 
     public List<GameObject> decorativePropList;
-    public List<GameObject> characterList;
-
     public List<GameObject> houseList;
 
 
@@ -36,18 +34,18 @@ public class InitialiseChunk : MonoBehaviour
 
                     GameObject decorativeProp = Instantiate(decorativePropList[selection]);
                     decorativeProp.transform.position = decorativePropTransform.position;
-                    decorativeProp.transform.parent = Chunk.transform;
+                    decorativeProp.transform.parent = decorativePropTransform.transform;
                 }
             }
 
             //Spawning House
-            GameObject houseSpot = Chunk.transform.GetChild(3).gameObject;
+            GameObject houseSpot = Chunk.transform.GetChild(2).gameObject;
 
             int houseSelection = Random.Range(0, houseList.Count);
             GameObject houseObject = Instantiate(houseList[houseSelection]);
             // position + offset
             houseObject.transform.position = houseSpot.transform.position + new Vector3(-0.25f, 0.5f, 0f);
-            houseObject.transform.parent = Chunk.transform;
+            houseObject.transform.parent = houseSpot.transform;
 
         }        
     }
