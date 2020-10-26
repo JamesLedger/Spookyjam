@@ -9,7 +9,7 @@ public class GameManagerScript : MonoBehaviour
     public Object[] neighborList;
 
     // Static
-    public static int playerScore;
+    public static int playerScore = 0;
     public static int playerLives = 3;
 
     // Debugging
